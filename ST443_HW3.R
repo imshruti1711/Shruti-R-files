@@ -41,11 +41,11 @@ regfit_bwd = regsubsets(y ~ .,
                         data = df,
                         nvmax = 10,
                         method = "backward")
-summary(regfit_fwd)
-plot(regfit_fwd, scale = "r2")  #all variables are being selected
-plot(regfit_fwd, scale = "adjr2")  #6 
-plot(regfit_fwd, scale = "Cp")   #6
-plot(regfit_fwd, scale = "bic") #2
+summary(regfit_bwd)
+plot(regfit_bwd, scale = "r2")  #all variables are being selected
+plot(regfit_bwd, scale = "adjr2")  #6 
+plot(regfit_bwd, scale = "Cp")   #6
+plot(regfit_bwd, scale = "bic") #2
 
 #lasso model
 install.packages('glmnet')
