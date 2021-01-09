@@ -1,0 +1,32 @@
+#To check if bootsrapping generates a distribution similar to the true distribution 
+
+x=rnorm(400,5,1)
+thetafun=function(x){exp(mean(x))}  #defining a formula for our parameter
+thetahat=1:2000
+for (i in 1:2000){ thetahat[i]=thetafun(rnorm(400,5,1))}
+hist(thetahat, main='True distriution of thetahat') #histogram of true distribution
+thetstar=1:2000
+for (i in 1:2000){
+  xstar=sample(x,2000, replace = T)
+  thetastar[i]=thetafun(xstar)
+}
+hist(thetastar,main='Boostrap generated distrbution of thetahat') #histogram of bootstap distribution
+
+#We see that the distribution of theta using bootstrap is very similar to true distribution 
+
+#Non-paramteric method to test whether two distributions are the same - PERMUTATION TEST
+x=c(45,55,39,60,64,85,80,64,48,62,75,77,50)
+y=c(45,59,48,74,73,78,66,69,79,81,60,52)
+k=0
+z1=c(x,y)
+tobs=abs(mean(x)-mean(y))
+m=length(x)
+mplusn=length(x)+length(y)
+mplus1=length(x)+1
+for(i in 1:5000){
+  z=sample(z1,mplusn)
+  tperm=abs(mean(z[1:m])-mean(z[mplus1:mplusn]))
+  if(tperm>tobs) k=k+1
+}
+k/5000 # p-value 
+#Conclusion : Since the p value is 0.5194, we cannot reject the null hypothesis that the distribution of values in x is different from that in y
