@@ -62,12 +62,4 @@ coef(cv.lasso)
 ## coefficient vector corresponding to the lowest mse using the best lambda
 coef(glmnet(x,y, lambda=cv.lasso$lambda.min))
 
-y=0.01+(0.05*x^7)+e
-regfit_bwd = regsubsets(y ~ x7+e,
-                        data = df,
-                        method = "backward")
-summary(regfit_bwd)
-plot(regfit_bwd, scale = "r2")  #all variables are being selected
-plot(regfit_bwd, scale = "adjr2")  #only x7 and intercept 
-plot(regfit_bwd, scale = "Cp")   #only x7 and intercept 
-plot(regfit_bwd, scale = "bic") #only x7 and intercept 
+
